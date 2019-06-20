@@ -42,7 +42,7 @@
                         <div class="register-link">
                             <p>
                                 Don't you have accountMember?
-                                <a href="/acountMember/register">Sign Up Here</a>
+                                <a href="/register.jsp">Sign Up Here</a>
                             </p>
                         </div>
                     </div>

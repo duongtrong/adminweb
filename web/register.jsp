@@ -53,13 +53,15 @@
                                 <label>Full name</label>
                                 <input class="au-input au-input--full" type="text" name="fullName" placeholder="Enter fullname">
                             </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input class="au-input au-input--full" type="text" name="phoneNumber" placeholder="Enter phone number">
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input class="au-input au-input--full" type="text" name="address" placeholder="Enter address">
+                            <div class="row form-group">
+                                <div class="col-sm-6">
+                                    <label>Phone Number</label>
+                                    <input class="au-input au-input--full" type="text" name="phoneNumber" placeholder="Enter phone number">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Address</label>
+                                    <input class="au-input au-input--full" type="text" name="address" placeholder="Enter address">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Roles</label>
@@ -81,7 +83,7 @@
                         <div class="register-link">
                             <p>
                                 Already have accountMember?
-                                <a href="/login">Sign In</a>
+                                <a href="/login.jsp">Sign In</a>
                             </p>
                         </div>
                     </div>
