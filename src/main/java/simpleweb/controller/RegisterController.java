@@ -43,7 +43,7 @@ public class RegisterController extends HttpServlet {
         accountMember.setFullName(fullName);
         accountMember.setEmail(email);
         accountMember.setAddress(address);
-        accountMember.setRole(AccountMember.Role.findByValue(role));
+        accountMember.setRole(AccountMember.Role.valueOf(this.toString()));
         accountMember.setPhoneNumber(phoneNumber);
         ofy().save().entity(accountMember).now();
         resp.sendRedirect("/table");

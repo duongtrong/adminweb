@@ -1,4 +1,5 @@
 <%@ page import="simpleweb.entity.AccountMember" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: trangduong
@@ -10,6 +11,7 @@
 <%
     AccountMember.Role[] roles = (AccountMember.Role[]) request.getAttribute("roles");
     AccountMember accountMember = (AccountMember) request.getAttribute("accountMember");
+    List<AccountMember> list = (List<AccountMember>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,31 +86,29 @@
                                 <table class="table table-data2">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>username</th>
                                         <th>fullname</th>
                                         <th>email</th>
                                         <th>phone</th>
-                                        <th>date</th>
+                                        <th>address</th>
                                         <th>role</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for (int i = 0; i < list.size(); i++) {
+                                    %>
                                     <tr class="spacer"></tr>
                                     <tr class="tr-shadow">
-                                        <td>A0010</td>
-                                        <td>Lori Lynch</td>
-                                        <td>Nguyen Van A</td>
+                                        <td><%= list.get(i).getUsername()%></td>
+                                        <td><%= list.get(i).getFullName()%></td>
                                         <td>
-                                            <span class="block-email">john@example.com</span>
+                                            <span class="block-email"><%= list.get(i).getEmail()%></span>
                                         </td>
-                                        <td class="desc">iPhone X 64Gb Grey</td>
-                                        <td>2018-09-29 05:57</td>
-                                        <td>
-                                            0981522133
-                                        </td>
-                                        <td>USER</td>
+                                        <td class="desc"><%= list.get(i).getPhoneNumber()%></td>
+                                        <td><%= list.get(i).getAddress()%></td>
+                                        <td><%= list.get(i).getRole()%></td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -123,9 +123,11 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <%
+                                        }
+                                    %>
                                     <tr class="spacer"></tr>
                                     <tr class="tr-shadow">
-                                        <td>B0010</td>
                                         <td>Lori Lynch</td>
                                         <td>Nguyen Van A</td>
                                         <td>
@@ -133,9 +135,6 @@
                                         </td>
                                         <td class="desc">iPhone X 256Gb Black</td>
                                         <td>2018-09-25 19:03</td>
-                                        <td>
-                                            <span class="status--denied">Denied</span>
-                                        </td>
                                         <td>MEMBER</td>
                                         <td>
                                             <div class="table-data-feature">
@@ -192,17 +191,20 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <%
+                                            for (int i = 0; i < list.size(); i++) {
+                                        %>
                                         <tr>
                                             <td>
                                                 <div class="table-data__info">
-                                                    <h6>lori lynch</h6>
+                                                    <h6><%= list.get(i).getUsername()%></h6>
                                                     <span>
-                                                                <a href="#">johndoe@gmail.com</a>
-                                                            </span>
+                                                        <%= list.get(i).getEmail()%>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <span class="role admin">admin</span>
+                                                <span><%= list.get(i).getRole()%></span>
                                             </td>
                                             <td>
                                                 <div class="rs-select2--trans rs-select2--sm">
@@ -215,13 +217,16 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                         <tr>
                                             <td>
                                                 <div class="table-data__info">
                                                     <h6>lori lynch</h6>
                                                     <span>
-                                                                <a href="#">johndoe@gmail.com</a>
-                                                            </span>
+                                                        <a href="#">johndoe@gmail.com</a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
@@ -243,8 +248,8 @@
                                                 <div class="table-data__info">
                                                     <h6>lori lynch</h6>
                                                     <span>
-                                                                    <a href="#">johndoe@gmail.com</a>
-                                                                </span>
+                                                        <a href="#">johndoe@gmail.com</a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>

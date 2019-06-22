@@ -27,7 +27,6 @@ public class AccountMember {
     private int role;
 
     public AccountMember() {
-        this.status = Status.ACTIVE.getValue();
         this.createdAtMLS = Calendar.getInstance().getTimeInMillis();
         this.updatedAtMLS = Calendar.getInstance().getTimeInMillis();
     }
@@ -66,6 +65,15 @@ public class AccountMember {
             return Status.DEACTIVE;
         }
 
+        @Override
+        public String toString(){
+            return this.name();
+        }
+
+        public String getName(){
+            return this.name();
+        }
+
         public int getValue() {
             return value;
         }
@@ -91,6 +99,19 @@ public class AccountMember {
                 }
             }
             return Role.USER;
+        }
+
+
+
+        @Override
+        public String toString(){
+            return this.name();
+        }
+
+        public String getName(){
+            return this.name();
+
+
         }
 
         public int getValue() {
@@ -194,6 +215,6 @@ public class AccountMember {
     }
 
     public void setRole(Role role) {
-        this.role = role.getValue();
+        this.role = Integer.parseInt(role.getName());
     }
 }

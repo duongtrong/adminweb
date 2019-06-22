@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,16 +23,17 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String password = req.getParameter("password");
         String username = req.getParameter("username");
-        AccountMember student = studentModel.findByUsernameAndStatus(username, AccountMember.Status.ACTIVE);
-        if (student == null) {
+        AccountMember accountMember = new AccountMember();
+        ofy().load().value(AccountMember.Status.ACTIVE.getValue());
+        if (accountMember == null) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             resp.getWriter().print("Not found");
             return;
         }
-        if (StringUtil.comparePasswordWithSalt(password, student.getSalt(), student.getPassword())) {
+        if (StringUtil.comparePasswordWithSalt(password, accountMember.getSalt(), accountMember.getPassword())) {
             HttpSession session = req.getSession();
-            session.setAttribute(ApplicationConstant.LOGGED_IN_USER, student);
-            resp.sendRedirect("/hello");
+            session.setAttribute(ApplicationConstant.LOGGED_IN_USER, accountMember);
+            resp.sendRedirect("/index");
             return;
         }
         resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
