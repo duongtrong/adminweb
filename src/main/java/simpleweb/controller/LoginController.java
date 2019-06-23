@@ -23,16 +23,15 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String password = req.getParameter("password");
         String username = req.getParameter("username");
-        AccountMember accountMember = new AccountMember();
-        ofy().load().value(AccountMember.Status.ACTIVE.getValue());
-        if (accountMember == null) {
+        AccountMember account = (AccountMember) ofy().load().value(AccountMember.Status.ACTIVE.getValue()).now();
+        if (account == null) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             resp.getWriter().print("Not found");
             return;
         }
-        if (StringUtil.comparePasswordWithSalt(password, accountMember.getSalt(), accountMember.getPassword())) {
+        if (StringUtil.comparePasswordWithSalt(password, account.getSalt(), account.getPassword())) {
             HttpSession session = req.getSession();
-            session.setAttribute(ApplicationConstant.LOGGED_IN_USER, accountMember);
+            session.setAttribute(ApplicationConstant.LOGGED_IN_USER, account);
             resp.sendRedirect("/index");
             return;
         }

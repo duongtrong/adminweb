@@ -57,7 +57,7 @@
                             <i class="fas fa-table"></i>Tables</a>
                     </li>
                     <li class="active">
-                        <a href="form.jsp">
+                        <a href="update.jsp">
                             <i class="far fa-check-square"></i>Forms</a>
                     </li>
                 </ul>

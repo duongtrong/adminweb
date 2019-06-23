@@ -1,4 +1,4 @@
-<%--
+<%@ page import="simpleweb.entity.AccountMember" %><%--
   Created by IntelliJ IDEA.
   User: trangduong
   Date: 6/18/2019
@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    AccountMember accountMember = (AccountMember) request.getAttribute("accountMember");
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,24 +44,9 @@
                             <i class="fas fa-table"></i>Tables</a>
                     </li>
                     <li>
-                        <a href="form.jsp">
+                        <a href="update.jsp">
                             <i class="far fa-check-square"></i>Forms</a>
                     </li>
-<%--                    <li class="has-sub">--%>
-<%--                        <a class="js-arrow" href="#">--%>
-<%--                            <i class="fas fa-copy"></i>Pages</a>--%>
-<%--                        <ul class="list-unstyled navbar__sub-list js-sub-list">--%>
-<%--                            <li>--%>
-<%--                                <a href="login.html">Login</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="register.html">Register</a>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a href="forget-pass.html">Forget Password</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
                 </ul>
             </nav>
         </div>
@@ -78,6 +66,51 @@
                                 <i class="zmdi zmdi-search"></i>
                             </button>
                         </form>
+                        <div class="header-button">
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    </div>
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#">john doe</a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info clearfix">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <a href="#"><%= accountMember.getUsername()%></a>
+                                                </h5>
+                                                <span class="email"><%= accountMember.getEmail()%></span>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__body">
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-account"></i>Account</a>
+                                            </div>
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-settings"></i>Setting</a>
+                                            </div>
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -236,7 +269,6 @@
         </div>
     </div>
 </div>
-
 <script src="vendor/jquery-3.2.1.min.js"></script>
 <script src="vendor/slick/slick.min.js"></script>
 <script src="vendor/animsition/animsition.min.js"></script>
